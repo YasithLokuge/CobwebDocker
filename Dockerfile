@@ -36,12 +36,12 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 CMD ["bash"]
 
 
-ENV CATALINA_HOME /home/apache-tomcat-8.0.9
+ENV CATALINA_HOME /home/cobweb/apache-tomcat-8.0.9
 ENV PATH $PATH:$CATALINA_HOME/bin
 
 RUN \
 
-  echo "./home/apache-tomcat-8.0.9/bin/startup.sh" >> /etc/bash.bashrc
+  echo "./home/cobweb/apache-tomcat-8.0.9/bin/startup.sh" >> /etc/bash.bashrc
 
 
 EXPOSE 8080
