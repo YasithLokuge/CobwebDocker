@@ -41,7 +41,8 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 
 RUN \
 
-  echo "./home/cobweb/apache-tomcat-8.0.9/bin/startup.sh" >> /etc/bash.bashrc
+  echo "cd /home/cobweb/apache-tomcat-8.0.9/bin" >> /etc/bash.bashrc && \
+  echo "sh ./startup.sh" >> /etc/bash.bashrc
 
 
 EXPOSE 8080
