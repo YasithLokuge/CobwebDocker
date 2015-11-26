@@ -24,7 +24,7 @@ RUN \
   mkdir cobweb && \
   cd cobweb && \
   wget http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.9/bin/apache-tomcat-8.0.9.tar.gz && \
-  tar -xzcv apache-tomcat-8.0.9.tar.gz && \
+  tar xvfz apache-tomcat-8.0.9.tar.gz && \
   cd apache-tomcat-8.0.9/bin && \
   ./startup.sh
 
