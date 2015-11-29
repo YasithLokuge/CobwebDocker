@@ -31,7 +31,7 @@ WORKDIR /home
 RUN \
 
   apt-get install -y wget && \
-  apt-get install -y git && \
+  apt-get install -y git-core && \
   mkdir cobweb && \
   cd cobweb && \
   git clone http://gitlab.cobweb.io/YasithLokuge/tomcat8.git && \
