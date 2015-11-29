@@ -92,7 +92,7 @@ RUN  \
   cd mosquitto && \
   make binary && \
   make install && \
-  mosquitto -c /home/cobweb/mosquitto/mosquitto.conf && \
+  echo "mosquitto -c /home/cobweb/mosquitto/mosquitto.conf" >> /etc/bash.bashrc  
 
 EXPOSE 1883
 
@@ -106,15 +106,14 @@ RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  ./cobweb-bootstrap.sh && \ 
+  ## ./cobweb-bootstrap.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
   echo "sh ./coap.sh &" >> /etc/bash.bashrc && \
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
   echo "sh ./mqtt.sh &" >> /etc/bash.bashrc && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
-  cd /home/cobweb/tomcat8/bin && \
-  ./startup.sh 
+  cd /home/cobweb/tomcat8/bin 
 
 RUN \
 
