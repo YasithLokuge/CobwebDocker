@@ -107,6 +107,7 @@ RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
+  chmod +x *.sh && \
   ./cobweb-bootstrap.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
   echo "sh ./coap.sh &" >> /etc/bash.bashrc && \
