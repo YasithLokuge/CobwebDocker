@@ -31,6 +31,7 @@ WORKDIR /home
 RUN \
 
   apt-get install -y wget && \
+  apt-get update && \
   apt-get install -y git-core && \
   mkdir cobweb && \
   cd cobweb && \
