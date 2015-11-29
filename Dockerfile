@@ -74,7 +74,7 @@ RUN \
   ./orientdb.sh start
 
 EXPOSE 2480
-
+EXPOSE 2424
 
 ###########################
 #### Install Mosquitto ####
