@@ -68,8 +68,7 @@ WORKDIR /home/cobweb
 RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
-  cd orientdb/bin && \
-  ./server.sh && \
+  cd orientdb/bin && \  
   echo "cd /home/cobweb/orientdb/bin" >> /etc/bash.bashrc && \
   echo "sh ./server.sh &" >> /etc/bash.bashrc
 
@@ -107,9 +106,7 @@ RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  ./cobweb-bootstrap.sh && \
-  ./coap.sh && \
-  ./mqtt.sh && \
+  ./cobweb-bootstrap.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
   echo "sh ./coap.sh &" >> /etc/bash.bashrc && \
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
@@ -117,7 +114,11 @@ RUN \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/cobweb/tomcat8/bin && \
-  ./startup.sh
+  ./startup.sh 
+
+RUN \
+
+  restart
 
 
 EXPOSE 5683
