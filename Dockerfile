@@ -70,7 +70,8 @@ RUN \
   git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
   cd orientdb/bin && \  
   echo "cd /home/cobweb/orientdb/bin" >> /etc/bash.bashrc && \
-  echo "sh ./server.sh &" >> /etc/bash.bashrc
+  echo "sh ./orientdb.sh start" >> /etc/bash.bashrc && \
+  ./orientdb.sh start
 
 EXPOSE 2480
 
@@ -106,7 +107,7 @@ RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  ## ./cobweb-bootstrap.sh && \ 
+  ./cobweb-bootstrap.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
   echo "sh ./coap.sh &" >> /etc/bash.bashrc && \
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
