@@ -104,7 +104,9 @@ EXPOSE 1883
 WORKDIR /home/cobweb
 
 RUN \
-
+  
+  git repack -a -f -d --window=250 --depth=250 && \
+  git config http.postBuffer 24288000 && \
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
   ./cobweb-bootstrap.sh && \ 
