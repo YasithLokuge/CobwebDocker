@@ -114,7 +114,9 @@ RUN \
   echo "sh ./mqtt.sh &" >> /etc/bash.bashrc && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
-  cd /home/cobweb/tomcat8/bin 
+  cd /home/cobweb/tomcat8/bin && \
+  ./shutdown.sh && \
+  ./startup.sh
 
 
 EXPOSE 5683
