@@ -35,6 +35,9 @@ RUN \
   apt-get install -y git-core && \
   mkdir cobweb && \
   cd cobweb && \
+  export GIT_TRACE_PACKET=1 && \
+  export GIT_TRACE=1 && \
+  export GIT_CURL_VERBOSE=1 && \
   git clone http://gitlab.cobweb.io/YasithLokuge/tomcat8.git && \
   cd tomcat8/webapps && \
   mv ROOT root_  
