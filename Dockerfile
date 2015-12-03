@@ -93,7 +93,7 @@ RUN  \
   cd mosquitto && \
   make binary && \
   make install && \
-  echo "mosquitto -c -d /home/cobweb/mosquitto/mosquitto.conf" >> /etc/bash.bashrc  
+  echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> /etc/bash.bashrc  
 
 EXPOSE 1883
 
