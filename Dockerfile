@@ -35,6 +35,7 @@ RUN \
   apt-get install -y git-core && \
   mkdir cobweb && \
   cd cobweb && \
+  git config --global http.postBuffer 1048576000 && \
   export GIT_TRACE_PACKET=1 && \
   export GIT_TRACE=1 && \
   export GIT_CURL_VERBOSE=1 && \
