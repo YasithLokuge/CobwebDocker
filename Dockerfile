@@ -37,7 +37,9 @@ RUN \
   cd cobweb && \  
   git clone http://gitlab.cobweb.io/YasithLokuge/tomcat8.git && \
   cd tomcat8/webapps && \
-  mv ROOT root_  
+  mv ROOT root_  && \
+  cd /home/cobweb/tomcat8 && \
+  mkdir logs 
 
 
 
