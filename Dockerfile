@@ -53,7 +53,7 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 RUN \
 
   echo "cd /home/cobweb/tomcat8/bin" >> /etc/bash.bashrc && \
-  echo "sh ./shutdown.sh" >> /etc/bash.bashrc
+  echo "sh ./shutdown.sh" >> /etc/bash.bashrc && \
   echo "sh ./startup.sh" >> /etc/bash.bashrc
 
 
