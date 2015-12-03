@@ -53,6 +53,7 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 RUN \
 
   echo "cd /home/cobweb/tomcat8/bin" >> /etc/bash.bashrc && \
+  echo "sh ./shutdown.sh" >> /etc/bash.bashrc
   echo "sh ./startup.sh" >> /etc/bash.bashrc
 
 
@@ -111,8 +112,7 @@ RUN \
   cd Deploy && \
   chmod +x *.sh && \  
   echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
-  echo "sh ./coap.sh &" >> /etc/bash.bashrc && \
-  echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
+  echo "sh ./coap.sh &" >> /etc/bash.bashrc && \  
   echo "sh ./mqtt.sh &" >> /etc/bash.bashrc && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
