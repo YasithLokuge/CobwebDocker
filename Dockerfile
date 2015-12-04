@@ -108,7 +108,7 @@ WORKDIR /home/cobweb
 
 RUN \
   
-  
+  cd Deploy && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/cobweb/tomcat8/bin && \
