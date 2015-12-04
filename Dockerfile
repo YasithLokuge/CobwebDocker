@@ -118,10 +118,10 @@ RUN \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
   chmod +x mqtt && \  
-  apt-get install -y daemontools && \  
+  apt-get install -y daemontools  
 
 
-CMD  ["/usr/bin/svscan","/home/cobweb/Deploy"]
+ENTRYPOINT ["/usr/bin/svscan","/home/cobweb/Deploy"]
 
 EXPOSE 5683
 
