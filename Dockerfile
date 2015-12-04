@@ -108,18 +108,21 @@ WORKDIR /home/cobweb
 
 RUN \
   
-  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
-  cd Deploy && \
-  chmod +x *.sh && \  
-  echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
-  echo "sh ./coap.sh &" >> /etc/bash.bashrc && \  
-  echo "sh ./mqtt.sh &" >> /etc/bash.bashrc && \  
+  
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/cobweb/tomcat8/bin && \
   ./shutdown.sh && \
-  ./startup.sh
+  ./startup.sh && \
+  cd /home/cobweb && \
+  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
+  cd Deploy && \
+  chmod +x coap && \
+  chmod +x mqtt && \  
+  apt-get install -y daemontools && \  
 
+
+ENTRYPOINT ["/usr/bin/svscan", "/home/cobweb/Deploy"]
 
 EXPOSE 5683
 
