@@ -41,12 +41,21 @@ RUN \
   cd /home/cobweb/tomcat8 && \
   mkdir logs 
 
+
+
 # Define default command.
 CMD ["bash"]
 
 
 ENV CATALINA_HOME /home/cobweb/tomcat8
 ENV PATH $PATH:$CATALINA_HOME/bin
+
+RUN \
+
+  echo "cd /home/cobweb/tomcat8/bin" >> /etc/bash.bashrc && \
+  echo "sh ./shutdown.sh" >> /etc/bash.bashrc && \
+  echo "sh ./startup.sh" >> /etc/bash.bashrc
+
 
 EXPOSE 80
 EXPOSE 8009
@@ -61,11 +70,11 @@ WORKDIR /home/cobweb
 
 RUN \
 
-  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git
-  
-
-CMD ["/home/cobweb/orientdb/bin/orientdb.sh","start","&"]
-
+  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
+  cd orientdb/bin && \  
+  echo "cd /home/cobweb/orientdb/bin" >> /etc/bash.bashrc && \
+  echo "sh ./orientdb.sh start" >> /etc/bash.bashrc && \
+  ./orientdb.sh start
 
 EXPOSE 2480
 EXPOSE 2424
@@ -86,10 +95,8 @@ RUN  \
   git clone http://gitlab.cobweb.io/YasithLokuge/mosquitto.git && \
   cd mosquitto && \
   make binary && \
-  make install  
-
-CMD ["mosquitto","-d","-c","/home/cobweb/mosquitto/mosquitto.conf","&"]
-
+  make install && \
+  echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> /etc/bash.bashrc  
 
 EXPOSE 1883
 
@@ -103,15 +110,16 @@ RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  chmod +x *.sh && \    
+  chmod +x *.sh && \  
+  echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
+  echo "sh ./coap.sh &" >> /etc/bash.bashrc && \  
+  echo "sh ./mqtt.sh &" >> /etc/bash.bashrc && \  
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
-  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war 
+  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
+  cd /home/cobweb/tomcat8/bin && \
+  ./shutdown.sh && \
+  ./startup.sh
 
-CMD ["/home/cobweb/Deploy/coap.sh","&"]
-CMD ["/home/cobweb/Deploy/mqtt.sh","&"]
-
-CMD ["/home/cobweb/tomcat8/bin/shutdown.sh"]
-CMD ["/home/cobweb/tomcat8/bin/startup.sh"]
 
 EXPOSE 5683
 
