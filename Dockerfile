@@ -108,15 +108,14 @@ WORKDIR /home/cobweb
 
 RUN \
   
+  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/cobweb/tomcat8/bin && \
   ./shutdown.sh && \
   ./startup.sh && \
-  cd /home/cobweb && \
-  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
-  cd Deploy && \
+  cd /home/cobweb/Deploy && \  
   chmod +x coap && \
   chmod +x mqtt && \  
   apt-get install -y daemontools && \  
