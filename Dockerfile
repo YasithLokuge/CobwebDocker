@@ -121,7 +121,9 @@ RUN \
   apt-get install -y daemontools  
 
 
-ENTRYPOINT ["/usr/bin/svscan","/home/cobweb/Deploy","&"]
+ENTRYPOINT ["/home/cobweb/Deploy/mqtt","&"]
+
+ENTRYPOINT ["/home/cobweb/Deploy/coap","&"]
 
 EXPOSE 5683
 
