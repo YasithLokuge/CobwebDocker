@@ -117,14 +117,16 @@ RUN \
   ./startup.sh && \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
-  chmod +x mqtt && \  
-  apt-get install -y daemontools  
+  chmod +x mqtt 
+  #echo "cd /home/cobweb/Deploy" >> /etc/bash.bashrc && \
+  #echo "sh ./coap &" >> /etc/bash.bashrc && \  
+  #echo "sh ./mqtt &" >> /etc/bash.bashrc
 
 
 ENTRYPOINT ["/home/cobweb/Deploy/mqtt","&"]
 ENTRYPOINT ["/home/cobweb/Deploy/coap","&"]
 
-CMD ["bash"]
+ENTRYPOINT ["/bin/bash"]
 
 EXPOSE 5683
 
