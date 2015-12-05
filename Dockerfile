@@ -109,6 +109,7 @@ WORKDIR /home/cobweb
 RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
+  chmod 777 Deploy && \
   cd Deploy && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
