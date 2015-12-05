@@ -119,7 +119,8 @@ RUN \
   chmod +x coap && \
   chmod +x mqtt && \
   echo "cd /home/cobweb/Deploy" >> ~/.bashrc && \
-  echo "sh ./coap &" >> ~/.bashrc && \  
+  echo "echo $PATH" >> ~/.bashrc && \ 
+  echo "sh ./coap &" >> ~/.bashrc && \
   echo "sh ./mqtt &" >> ~/.bashrc
 
 CMD ["bash"]
