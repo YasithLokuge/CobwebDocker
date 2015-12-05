@@ -122,8 +122,9 @@ RUN \
 
 
 ENTRYPOINT ["/home/cobweb/Deploy/mqtt","&"]
-
 ENTRYPOINT ["/home/cobweb/Deploy/coap","&"]
+
+CMD ["bash"]
 
 EXPOSE 5683
 
