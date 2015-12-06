@@ -123,7 +123,7 @@ RUN \
   echo "sh ./coap &" >> ~/.bashrc && \
   echo "sh ./mqtt &" >> ~/.bashrc
 
-CMD ["bash"]
+CMD ["bash","-l"]
 
 EXPOSE 5683
 
