@@ -118,13 +118,10 @@ RUN \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
   chmod +x mqtt && \  
-  echo "cd /home/cobweb/Deploy" >> ~/.profile && \   
-  echo "echo \"profile\"" >> ~/.profile && \
-  echo "echo \"bashrc\"" >> ~/.bashrc && \  
-  echo "sh ./coap &" >> ~/.profile && \
-  echo "sh ./mqtt &" >> ~/.profile
-
-CMD ["bash","-l"]
+  echo "cd /home/cobweb/Deploy" >> ~/.profile && \  
+  echo "source ./coap &" >> ~/.profile && \
+  echo "source ./mqtt &" >> ~/.profile
 
 EXPOSE 5683
 
+CMD ["bash", "-l"]
