@@ -118,8 +118,7 @@ RUN \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
   chmod +x mqtt && \  
-  echo "cd /home/cobweb/Deploy" >> ~/.profile && \ 
-  echo "bash -l" >> ~/.profile && \
+  echo "cd /home/cobweb/Deploy" >> ~/.profile && \   
   echo "sh ./coap &" >> ~/.profile && \
   echo "sh ./mqtt &" >> ~/.profile
 
