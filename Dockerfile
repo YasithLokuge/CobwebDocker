@@ -108,8 +108,7 @@ WORKDIR /home/cobweb
 
 RUN \
   
-  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
-  chmod -R 777 Deploy && \
+  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
   cd Deploy && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
@@ -118,12 +117,13 @@ RUN \
   ./startup.sh && \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
-  chmod +x mqtt && \
-  echo "cd /home/cobweb/Deploy" >> ~/.bashrc && \  
+  chmod +x mqtt && \  
+  echo "cd /home/cobweb/Deploy" >> ~/.bashrc && \ 
+  echo "bash -l" && \
   echo "sh ./coap &" >> ~/.bashrc && \
   echo "sh ./mqtt &" >> ~/.bashrc
 
-CMD ["-c","bash","-l"]
+CMD ["bash","-l"]
 
 EXPOSE 5683
 
