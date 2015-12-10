@@ -52,9 +52,9 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 
 RUN \
 
-  echo "cd /home/cobweb/tomcat8/bin" >> ~/etc/profile && \
-  echo "sh ./shutdown.sh" >> ~/etc/profile && \
-  echo "sh ./startup.sh" >> ~/etc/profile
+  echo "cd /home/cobweb/tomcat8/bin" >> /etc/profile && \
+  echo "sh ./shutdown.sh" >> /etc/profile && \
+  echo "sh ./startup.sh" >> /etc/profile
 
 
 EXPOSE 80
@@ -72,8 +72,8 @@ RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
   cd orientdb/bin && \  
-  echo "cd /home/cobweb/orientdb/bin" >> ~/etc/profile && \
-  echo "sh ./orientdb.sh start" >> ~/etc/profile && \
+  echo "cd /home/cobweb/orientdb/bin" >> /etc/profile && \
+  echo "sh ./orientdb.sh start" >> /etc/profile && \
   ./orientdb.sh start
 
 EXPOSE 2480
@@ -96,7 +96,7 @@ RUN  \
   cd mosquitto && \
   make binary && \
   make install && \
-  echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> ~/etc/profile 
+  echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> /etc/profile 
 
 EXPOSE 1883
 
@@ -118,9 +118,9 @@ RUN \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
   chmod +x mqtt && \  
-  echo "cd /home/cobweb/Deploy" >> ~/etc/profile && \  
-  echo "source ./coap &" >> ~/etc/profile && \
-  echo "source ./mqtt &" >> ~/etc/profile
+  echo "cd /home/cobweb/Deploy" >> /etc/profile && \  
+  echo "source ./coap &" >> /etc/profile && \
+  echo "source ./mqtt &" >> /etc/profile
 
 EXPOSE 5683
 
