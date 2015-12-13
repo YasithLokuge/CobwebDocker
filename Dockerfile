@@ -111,6 +111,9 @@ WORKDIR /home/spider/cobweb
 RUN git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git
 RUN chown -R spider Deploy
 RUN cd Deploy
+
+USER spider
+
 RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps
 RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 RUN cd /home/spider/cobweb/tomcat8/bin
@@ -124,5 +127,5 @@ RUN echo "source ./coap &" >> /etc/profile
 RUN echo "source ./mqtt &" >> /etc/profile
 
 EXPOSE 5683
-USER spider
+
 CMD ["bash", "-l"]
