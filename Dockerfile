@@ -109,10 +109,10 @@ EXPOSE 1883
 WORKDIR /home/spider/cobweb
   
 RUN git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git
-RUN chown -R spider Deploy
+#RUN chown -R spider Deploy
 RUN cd Deploy
 
-USER spider
+#USER spider
 
 RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps
 RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
