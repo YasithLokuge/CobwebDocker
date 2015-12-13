@@ -109,6 +109,7 @@ WORKDIR /home/cobweb
 RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
+  chown -R root Deploy &&\
   cd Deploy && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
@@ -123,5 +124,7 @@ RUN \
   echo "source ./mqtt &" >> /etc/profile
 
 EXPOSE 5683
+
+USER root
 
 CMD ["bash", "-l"]
