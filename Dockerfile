@@ -107,23 +107,21 @@ EXPOSE 1883
 #########################
 
 WORKDIR /home/spider/cobweb
-
-RUN \
   
-  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
-  chown -R spider Deploy &&\
-  cd Deploy && \
-  cp cobweb.war /home/spider/cobweb/tomcat8/webapps && \
-  mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
-  cd /home/spider/cobweb/tomcat8/bin && \
-  ./shutdown.sh && \
-  ./startup.sh && \
-  cd /home/spider/cobweb/Deploy && \  
-  chmod +x coap && \
-  chmod +x mqtt && \    
-  echo "cd /home/spider/cobweb/Deploy" >> /etc/profile && \  
-  echo "source ./coap &" >> /etc/profile && \
-  echo "source ./mqtt &" >> /etc/profile
+RUN git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git
+RUN chown -R spider Deploy
+RUN cd Deploy
+RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps
+RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
+RUN cd /home/spider/cobweb/tomcat8/bin
+RUN ./shutdown.sh
+RUN ./startup.sh
+RUN cd /home/spider/cobweb/Deploy
+RUN chmod +x coap
+RUN chmod +x mqtt
+RUN echo "cd /home/spider/cobweb/Deploy" >> /etc/profile
+RUN echo "source ./coap &" >> /etc/profile
+RUN echo "source ./mqtt &" >> /etc/profile
 
 EXPOSE 5683
 USER spider
