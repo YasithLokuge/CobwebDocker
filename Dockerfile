@@ -114,9 +114,9 @@ RUN cd Deploy
 
 USER spider
 
-RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps
+RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps; exit 0
 RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
-RUN cd /home/spider/cobweb/tomcat8/bin && echo OK
+RUN cd /home/spider/cobweb/tomcat8/bin 
 RUN ./shutdown.sh
 RUN ./startup.sh
 RUN cd /home/spider/cobweb/Deploy
