@@ -116,15 +116,15 @@ USER spider
 
 RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps; exit 0
 RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war; exit 0
-RUN cd /home/spider/cobweb/tomcat8/bin 
-RUN ./shutdown.sh
-RUN ./startup.sh
-RUN cd /home/spider/cobweb/Deploy
-RUN chmod +x coap
-RUN chmod +x mqtt
-RUN echo "cd /home/spider/cobweb/Deploy" >> /etc/profile
-RUN echo "source ./coap &" >> /etc/profile
-RUN echo "source ./mqtt &" >> /etc/profile
+RUN cd /home/spider/cobweb/tomcat8/bin; exit 0
+RUN ./shutdown.sh; exit 0
+RUN ./startup.sh; exit 0
+RUN cd /home/spider/cobweb/Deploy; exit 0
+RUN chmod +x coap; exit 0
+RUN chmod +x mqtt; exit 0
+RUN echo "cd /home/spider/cobweb/Deploy" >> /etc/profile; exit 0
+RUN echo "source ./coap &" >> /etc/profile; exit 0
+RUN echo "source ./mqtt &" >> /etc/profile; exit 0
 
 EXPOSE 5683
 
