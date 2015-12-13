@@ -105,7 +105,7 @@ EXPOSE 1883
 #########################
 
 WORKDIR /home/cobweb
-ENTRYPOINT ["/home/cobweb/Deploy"]
+
 RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
@@ -118,14 +118,11 @@ RUN \
   ./startup.sh && \
   cd /home/cobweb/Deploy && \  
   chmod +x coap && \
-  chmod +x mqtt && \  
-  chmod +x /entrypoint.sh && \
+  chmod +x mqtt && \    
   echo "cd /home/cobweb/Deploy" >> /etc/profile && \  
   echo "source ./coap &" >> /etc/profile && \
   echo "source ./mqtt &" >> /etc/profile
 
 EXPOSE 5683
-
-USER root
 
 CMD ["bash", "-l"]
