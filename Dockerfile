@@ -39,7 +39,7 @@ RUN \
   cd tomcat8/webapps && \
   mv ROOT root_  && \
   cd /home/spider/cobweb/tomcat8 && \
-  mkdir logs 
+  mkdir logs; exit 0
 
 
 
@@ -63,10 +63,8 @@ WORKDIR /home/cobweb
 
 RUN \
 
-  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
-  cd orientdb/bin && \    
-  ./orientdb.sh start
-
+  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git 
+   
 EXPOSE 2480
 EXPOSE 2424
 
@@ -86,7 +84,7 @@ RUN  \
   git clone http://gitlab.cobweb.io/YasithLokuge/mosquitto.git && \
   cd mosquitto && \
   make binary && \
-  make install && \
+  make install; exit 0
   
 EXPOSE 1883
 
@@ -107,7 +105,7 @@ RUN \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/cobweb/Deploy && \
   chmod +x coap && \
-  chmod +x mqtt
+  chmod +x mqtt; exit 0
 
 EXPOSE 5683
 
