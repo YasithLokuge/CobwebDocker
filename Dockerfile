@@ -64,7 +64,7 @@ WORKDIR /home/spider/cobweb
 
 RUN \
 
-  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git 
+  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git; exit 0
 
 EXPOSE 2480
 EXPOSE 2424
@@ -100,8 +100,8 @@ RUN \
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
   mkdir bootstrap && \
   cd Deploy && \
-  cp bootstrap /home/spider/bootstrap && \
-  chmod +x /home/spider/bootstrap/bootstrap && \
+  cp bootstrap / && \
+  chmod +x /bootstrap && \
   cp cobweb.war /home/spider/cobweb/tomcat8/webapps && \
   mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
   cd /home/spider/cobweb/Deploy && \
@@ -111,4 +111,4 @@ RUN \
 EXPOSE 5683
 
 CMD ["bash", "-l"]
-ENTRYPOINT ["/home/spider/cobweb/bootstrap"]
+ENTRYPOINT ["/bootstrap"]
