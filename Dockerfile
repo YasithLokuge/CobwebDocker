@@ -64,7 +64,7 @@ WORKDIR /home/cobweb
 RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git 
-   
+
 EXPOSE 2480
 EXPOSE 2424
 
@@ -110,4 +110,5 @@ RUN \
 EXPOSE 5683
 
 CMD ["bash", "-l"]
+USER root
 ENTRYPOINT ["/home/cobweb/bootstrap"]
