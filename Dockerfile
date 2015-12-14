@@ -25,22 +25,21 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 #### Install Tomcat8 ####
 #########################
 
-
 # Define working directory.
 WORKDIR /home
 
 RUN \
-  
+
   apt-get install -y wget && \
   apt-get update && \
-  apt-get install -y git-core && \  
+  apt-get install -y git-core && \
   mkdir cobweb && \
   cd cobweb && \  
   git clone http://gitlab.cobweb.io/YasithLokuge/tomcat8.git && \
   cd tomcat8/webapps && \
   mv ROOT root_  && \
   cd /home/cobweb/tomcat8 && \
-  mkdir logs
+  mkdir logs 
 
 
 
@@ -64,7 +63,7 @@ WORKDIR /home/cobweb
 
 RUN \
 
-  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git
+  git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git 
 
 EXPOSE 2480
 EXPOSE 2424
@@ -94,20 +93,14 @@ EXPOSE 1883
 #########################
 
 WORKDIR /home/cobweb
-  
-RUN \
 
-  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
+RUN \
+  
+  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  cp bootstrap.sh / && \
-  chmod +x /bootstrap.sh && \
-  cp cobweb.war /home/cobweb/tomcat8/webapps && \
-  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
-  cd /home/cobweb/Deploy && \
   chmod +x coap && \
-  chmod +x mqtt
+  chmod +x mqtt && \  
+  cp cobweb.war /home/cobweb/tomcat8/webapps && \
+  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 
 EXPOSE 5683
-
-CMD ["bash"]
-ENTRYPOINT ["/bootstrap.sh"]
