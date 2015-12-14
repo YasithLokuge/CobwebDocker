@@ -8,7 +8,7 @@ MAINTAINER Yasith Lokuge <yasith@cobweb.io>
 #######################
 
 RUN \
-
+  useradd -ms /bin/bash spider && \
   apt-get install -y software-properties-common && \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
@@ -25,8 +25,9 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 #### Install Tomcat8 ####
 #########################
 
+USER spider
 # Define working directory.
-WORKDIR /home
+WORKDIR /home/spider
 
 RUN \
   
@@ -47,7 +48,7 @@ RUN \
 CMD ["bash"]
 
 
-ENV CATALINA_HOME /home/cobweb/tomcat8
+ENV CATALINA_HOME /home/spider/cobweb/tomcat8
 ENV PATH $PATH:$CATALINA_HOME/bin
 
 EXPOSE 80
@@ -59,7 +60,7 @@ EXPOSE 8009
 #### Install OrientDB ####
 ##########################
 
-WORKDIR /home/cobweb
+WORKDIR /home/spider/cobweb
 
 RUN \
 
@@ -72,7 +73,7 @@ EXPOSE 2424
 #### Install Mosquitto ####
 ###########################
 
-WORKDIR /home/cobweb
+WORKDIR /home/spider/cobweb
 
 RUN  \
 
@@ -92,23 +93,22 @@ EXPOSE 1883
 #### Download Cobweb ####
 #########################
 
-WORKDIR /home/cobweb
+WORKDIR /home/spider/cobweb
   
 RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
   mkdir bootstrap && \
   cd Deploy && \
-  cp bootstrap /home/bootstrap && \
-  chmod +x /home/bootstrap/bootstrap && \
-  cp cobweb.war /home/cobweb/tomcat8/webapps && \
-  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
-  cd /home/cobweb/Deploy && \
+  cp bootstrap /home/spider/bootstrap && \
+  chmod +x /home/spider/bootstrap/bootstrap && \
+  cp cobweb.war /home/spider/cobweb/tomcat8/webapps && \
+  mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
+  cd /home/spider/cobweb/Deploy && \
   chmod +x coap && \
   chmod +x mqtt; exit 0
 
 EXPOSE 5683
 
 CMD ["bash", "-l"]
-USER root
-ENTRYPOINT ["/home/cobweb/bootstrap"]
+ENTRYPOINT ["/home/spider/cobweb/bootstrap"]
