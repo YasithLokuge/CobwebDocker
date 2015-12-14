@@ -118,6 +118,6 @@ RUN \
   echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> /root/.bashrc && \
   echo "cd /home/cobweb/Deploy" >> /root/.bashrc && \
   echo "java -jar CoAP-1.0-jar-with-dependencies.jar &" >> /root/.bashrc && \
-  echo "java -jar /home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar &" >> /root/.bashrc && \
+  echo "java -jar /home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar &" >> /root/.bashrc
 
 CMD ["bash"]
