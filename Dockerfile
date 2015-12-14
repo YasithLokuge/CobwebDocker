@@ -100,10 +100,9 @@ RUN \
   cd Deploy && \
   chmod +x *.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /home/.bashrc && \  
-  echo "sh ./bootstrap.sh &" >> /home/.bashrc && \ 
-  cp mqtt.sh / && \
+  echo "sh ./bootstrap.sh &" >> /home/.bashrc && \
+  echo "java -jar /home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar &" >> /home/.bashrc && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 
 EXPOSE 5683
-ENTRYPOINT ["/mqtt.sh"]
