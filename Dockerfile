@@ -29,12 +29,10 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 WORKDIR /home
 
 RUN \
-
-  useradd -ms /bin/bash spider && \
+  
   apt-get install -y wget && \
   apt-get update && \
-  apt-get install -y git-core && \
-  cd spider && \
+  apt-get install -y git-core && \  
   mkdir cobweb && \
   cd cobweb && \  
   git clone http://gitlab.cobweb.io/YasithLokuge/tomcat8.git && \
@@ -49,15 +47,8 @@ RUN \
 CMD ["bash"]
 
 
-ENV CATALINA_HOME /home/spider/cobweb/tomcat8
+ENV CATALINA_HOME /home/cobweb/tomcat8
 ENV PATH $PATH:$CATALINA_HOME/bin
-
-RUN \
-
-  echo "cd /home/spider/cobweb/tomcat8/bin" >> /etc/profile && \
-  echo "sh ./shutdown.sh" >> /etc/profile && \
-  echo "sh ./startup.sh" >> /etc/profile
-
 
 EXPOSE 80
 EXPOSE 8009
@@ -68,14 +59,12 @@ EXPOSE 8009
 #### Install OrientDB ####
 ##########################
 
-WORKDIR /home/spider/cobweb
+WORKDIR /home/cobweb
 
 RUN \
 
   git clone http://gitlab.cobweb.io/YasithLokuge/orientdb.git && \
-  cd orientdb/bin && \  
-  echo "cd /home/spider/cobweb/orientdb/bin" >> /etc/profile && \
-  echo "sh ./orientdb.sh start" >> /etc/profile && \
+  cd orientdb/bin && \    
   ./orientdb.sh start
 
 EXPOSE 2480
@@ -85,7 +74,7 @@ EXPOSE 2424
 #### Install Mosquitto ####
 ###########################
 
-WORKDIR /home/spider/cobweb
+WORKDIR /home/cobweb
 
 RUN  \
 
@@ -98,34 +87,29 @@ RUN  \
   cd mosquitto && \
   make binary && \
   make install && \
-  echo "mosquitto -d -c /home/spider/cobweb/mosquitto/mosquitto.conf" >> /etc/profile 
-
+  
 EXPOSE 1883
 
 #########################
 #### Download Cobweb ####
 #########################
 
-WORKDIR /home/spider/cobweb
+WORKDIR /home/cobweb
   
-RUN git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git
-RUN chown -R spider Deploy
-RUN cd Deploy
+RUN \
 
-USER spider
-
-RUN cp cobweb.war /home/spider/cobweb/tomcat8/webapps; exit 0
-RUN mv /home/spider/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war; exit 0
-RUN cd /home/spider/cobweb/tomcat8/bin; exit 0
-RUN ./shutdown.sh; exit 0
-RUN ./startup.sh; exit 0
-RUN cd /home/spider/cobweb/Deploy; exit 0
-RUN chmod +x coap; exit 0
-RUN chmod +x mqtt; exit 0
-RUN echo "cd /home/spider/cobweb/Deploy" >> /etc/profile; exit 0
-RUN echo "source ./coap &" >> /etc/profile; exit 0
-RUN echo "source ./mqtt &" >> /etc/profile; exit 0
+  git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \  
+  mkdir bootstrap && \
+  cd Deploy && \
+  cp bootstrap /home/bootstrap && \
+  chmod +x /home/bootstrap/bootstrap && \
+  cp cobweb.war /home/cobweb/tomcat8/webapps && \
+  mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war && \
+  cd /home/cobweb/Deploy && \
+  chmod +x coap && \
+  chmod +x mqtt
 
 EXPOSE 5683
 
 CMD ["bash", "-l"]
+ENTRYPOINT ["/home/cobweb/bootstrap"]
