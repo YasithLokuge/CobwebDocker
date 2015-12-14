@@ -109,5 +109,5 @@ RUN \
 
 EXPOSE 5683
 
-CMD ["bash", "-l"]
 ENTRYPOINT ["/bootstrap.sh"]
+CMD ["bash"]
