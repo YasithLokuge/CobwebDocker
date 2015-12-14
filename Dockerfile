@@ -97,12 +97,27 @@ WORKDIR /home/cobweb
 RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
-  cd Deploy && \
-  chmod +x *.sh && \ 
-  echo "cd /home/cobweb/Deploy" >> /home/.bashrc && \  
-  echo "sh ./bootstrap.sh &" >> /home/.bashrc && \
-  echo "java -jar /home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar &" >> /home/.bashrc && \
+  cd Deploy && \   
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 
 EXPOSE 5683
+
+
+#######################
+##### bootstrap #######
+#######################
+
+RUN \
+
+  echo "cd /home/cobweb/tomcat8/bin" >> /root/.bashrc && \
+  echo "sh ./shutdown.sh" >> /root/.bashrc && \
+  echo "sh ./startup.sh" >> /root/.bashrc && \
+  echo "cd /home/cobweb/orientdb/bin" >> /root/.bashrc && \
+  echo "sh ./orientdb.sh start" >> /root/.bashrc && \
+  echo "mosquitto -d -c /home/cobweb/mosquitto/mosquitto.conf" >> /root/.bashrc && \
+  echo "cd /home/cobweb/Deploy" >> /root/.bashrc && \
+  echo "java -jar CoAP-1.0-jar-with-dependencies.jar &" >> /root/.bashrc && \
+  echo "java -jar /home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar &" >> /root/.bashrc && \
+
+CMD ["bash"]
