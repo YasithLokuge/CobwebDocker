@@ -98,8 +98,9 @@ RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  chmod +x coap && \
-  chmod +x mqtt && \  
+  chmod +x coap.sh && \
+  chmod +x mqtt.sh && \
+  cp mqtt.sh / && \  
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 
