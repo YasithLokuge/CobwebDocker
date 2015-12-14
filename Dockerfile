@@ -98,11 +98,12 @@ RUN \
   
   git clone http://gitlab.cobweb.io/YasithLokuge/Deploy.git && \
   cd Deploy && \
-  chmod +x bootstrap.sh && \ 
+  chmod +x *.sh && \ 
   echo "cd /home/cobweb/Deploy" >> /home/.bashrc && \  
-  echo "sh ./bootstrap.sh" >> /home/.bashrc && \   
+  echo "sh ./bootstrap.sh &" >> /home/.bashrc && \ 
+  cp mqtt.sh / && \
   cp cobweb.war /home/cobweb/tomcat8/webapps && \
   mv /home/cobweb/tomcat8/webapps/cobweb.war /home/cobweb/tomcat8/webapps/ROOT.war
 
 EXPOSE 5683
-ENTRYPOINT ["java","-jar","/home/cobweb/Deploy/Mqtt-1.0-jar-with-dependencies.jar","&"]
+ENTRYPOINT ["/mqtt.sh"]
