@@ -8,4 +8,14 @@
 
 [http://localhost/](http://localhost/)
 
+hit enter 
+
+after docker vm started running, execute the following command to run the mqtt connector
+
+```./mqtt.sh```
+
+for source code and other requests please contact
+
+[admin@cobweb.io](email:admin@cobweb.io)
+
 enjoy
