@@ -18,6 +18,6 @@ open the following url in your browser
 
 for source code and other requests please contact
 
-[admin@cobweb.io](email:admin@cobweb.io)
+[admin@cobweb.io](mailto:admin@cobweb.io)
 
 enjoy
